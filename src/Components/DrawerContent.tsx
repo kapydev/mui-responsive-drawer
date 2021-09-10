@@ -9,7 +9,7 @@ function DrawerContent(props: IDrawerContent) {
         <Box width={150} padding={3}>
             <List>
                 {props.drawerItems.map((drawerItem) => (
-                    <ListItem button={true}>
+                    <ListItem button={true} onClick={() => { console.log(drawerItem + " was clicked") }}>
                         <Typography>
                             {drawerItem}
                         </Typography>
