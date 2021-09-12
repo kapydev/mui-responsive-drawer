@@ -1,5 +1,4 @@
 import Layout from "./Components/Layout";
-import { Typography } from "@material-ui/core";
 
 function App() {
 

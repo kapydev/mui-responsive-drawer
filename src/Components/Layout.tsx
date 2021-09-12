@@ -2,7 +2,6 @@ import { Grid, Drawer, Hidden, AppBar, IconButton, Toolbar } from "@material-ui/
 import DrawerContent from "./DrawerContent";
 import MenuIcon from '@material-ui/icons/Menu';
 import { useState } from 'react';
-import { SettingsPowerRounded } from "@material-ui/icons";
 
 interface ILayout {
     children: React.ReactNode
