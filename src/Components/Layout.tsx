@@ -1,70 +1,45 @@
-import { Grid, Drawer, Hidden, AppBar, IconButton, Toolbar, Typography, Box } from "@material-ui/core";
+import { Grid, Drawer, Hidden, AppBar, IconButton, Toolbar } from "@material-ui/core";
 import DrawerContent from "./DrawerContent";
 import MenuIcon from '@material-ui/icons/Menu';
+import { useState } from 'react';
+import { SettingsPowerRounded } from "@material-ui/icons";
 
 interface ILayout {
-    children: any
-    drawerItems: string[]
-    open: boolean
-    handleOpen(): void
-    handleClose(): void
+    children: React.ReactNode
 }
 
 function Layout(props: ILayout) {
 
+    const [open, setOpen] = useState(false)
+
     return (
         <Grid container>
             <Grid item xs={12}>
-                <AppBar position="relative">
+                <AppBar position='relative'>
                     <Toolbar>
-
-                        {/* For Mobile Only*/}
                         <Hidden smUp>
-                            <IconButton edge="start" color="inherit" onClick={props.handleOpen}>
+                            <IconButton color='inherit' onClick={() => setOpen(true)} >
                                 <MenuIcon />
                             </IconButton>
                         </Hidden>
-
-                        <Box padding={2}>
-                            <Typography variant="h5" align="center">
-                                Lorem Ipsum
-                            </Typography>
-                        </Box>
-
                     </Toolbar>
                 </AppBar>
             </Grid>
             <Grid item>
-
-                {/* For Web Only */}
-                <Hidden only='xs'>
-                    <DrawerContent
-                        drawerItems={props.drawerItems} />
-                </Hidden>
-
-                {/* For Mobile Only */}
                 <Hidden smUp>
-                    <Drawer
-                        open={props.open}
-                        onClose={props.handleClose}>
-                        <DrawerContent
-                            drawerItems={props.drawerItems}
-                        />
+                    <Drawer open={open} onClose={() => setOpen(false)}>
+                        <DrawerContent />
                     </Drawer>
                 </Hidden>
-
+                <Hidden only='xs'>
+                    <DrawerContent />
+                </Hidden>
             </Grid>
-            <Grid item xs>
-                <Box padding={3}>
-                    <Grid container justifyContent="center">
-                        <Grid item xs={10}>
-                            {props.children}
-                        </Grid>
-                    </Grid>
-                </Box>
+            <Grid item>
+                {props.children}
             </Grid>
         </Grid>
-    );
+    )
 }
 
 export default Layout;

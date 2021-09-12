@@ -1,17 +1,15 @@
 import { List, ListItem, Typography, Box } from "@material-ui/core";
 
-interface IDrawerContent {
-    drawerItems: string[]
-}
+const items: string[] = ['Lorem Ipsum', 'Dlor Sit', 'Amet Minima', 'Dolores', 'Tempore', 'Pariatur']
 
-function DrawerContent(props: IDrawerContent) {
+function DrawerContent() {
     return (
         <Box width={150} padding={3}>
             <List>
-                {props.drawerItems.map((drawerItem) => (
-                    <ListItem button={true} onClick={() => { console.log(drawerItem + " was clicked") }}>
+                {items.map((item) => (
+                    <ListItem button={true} onClick={() => { console.log(item + " was clicked") }}>
                         <Typography>
-                            {drawerItem}
+                            {item}
                         </Typography>
                     </ListItem>
                 ))}
