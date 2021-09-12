@@ -13,13 +13,13 @@ interface ILayout {
 function Layout(props: ILayout) {
 
     return (
-        <Grid container direction="column">
-            <Grid item>
+        <Grid container>
+            <Grid item xs={12}>
                 <AppBar position="relative">
                     <Toolbar>
 
                         {/* For Mobile Only*/}
-                        <Hidden mdUp>
+                        <Hidden smUp>
                             <IconButton edge="start" color="inherit" onClick={props.handleOpen}>
                                 <MenuIcon />
                             </IconButton>
@@ -35,34 +35,33 @@ function Layout(props: ILayout) {
                 </AppBar>
             </Grid>
             <Grid item>
-                <Grid container direction="row">
-                    <Grid item>
 
-                        {/* For Web Only */}
-                        <Hidden smDown>
-                            <DrawerContent drawerItems={props.drawerItems} />
-                        </Hidden>
+                {/* For Web Only */}
+                <Hidden only='xs'>
+                    <DrawerContent
+                        drawerItems={props.drawerItems} />
+                </Hidden>
 
-                        {/* For Mobile Only */}
-                        <Hidden smUp>
-                            <Drawer open={props.open} onClose={props.handleClose}>
-                                <DrawerContent drawerItems={props.drawerItems} />
-                            </Drawer>
-                        </Hidden>
+                {/* For Mobile Only */}
+                <Hidden smUp>
+                    <Drawer
+                        open={props.open}
+                        onClose={props.handleClose}>
+                        <DrawerContent
+                            drawerItems={props.drawerItems}
+                        />
+                    </Drawer>
+                </Hidden>
 
+            </Grid>
+            <Grid item xs>
+                <Box padding={3}>
+                    <Grid container justifyContent="center">
+                        <Grid item xs={10}>
+                            {props.children}
+                        </Grid>
                     </Grid>
-
-                    <Grid item xs>
-                        <Box padding={3}>
-                            <Grid container justifyContent="center">
-                                <Grid item xs={10}>
-                                    {props.children}
-                                </Grid>
-                            </Grid>
-                        </Box>
-                    </Grid>
-
-                </Grid>
+                </Box>
             </Grid>
         </Grid>
     );
